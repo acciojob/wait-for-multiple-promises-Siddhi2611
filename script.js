@@ -1,10 +1,9 @@
-//your JS code here. If required.
 // Generate a random delay between 1–3 seconds
 function randomDelay() {
   return Math.random() * 2000 + 1000; // 1000–3000 ms
 }
 
-// Create a promise that resolves after random delay
+// Create a promise that resolves after a random delay
 function createPromise(id) {
   return new Promise((resolve) => {
     const delay = randomDelay();
@@ -30,8 +29,11 @@ Promise.all(promises).then((results) => {
   const endAll = performance.now();
   const totalTime = (endAll - startAll) / 1000;
 
-  // Clear "Loading..." row
-  tbody.innerHTML = "";
+  // Remove loading row if it exists
+  const loadingRow = document.getElementById("loading");
+  if (loadingRow) {
+    loadingRow.remove();
+  }
 
   // Render each promise row
   results.forEach((result) => {
